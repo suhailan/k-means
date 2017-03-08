@@ -1,8 +1,7 @@
 <style type="text/css">
  table{ text-align:center; font-size:12px};
 </style>
-<h1 style="line-height:40% ">K-Means</h1>
-<p style="line-height:40%; font-style:normal">A K-Means algorithm.</p>
+<h1 style="line-height:40% ">K-Means Algorithms</h1>
 <h3 style="line-height:30% ">By Suhailan Safei (2015)</h3>
 <h5 style="line-height:30% ">suhailan@unisza.edu.my</h5>
 <hr>
@@ -23,7 +22,8 @@ $alternative = array(
 					);
 $ITERATION_LIMIT = 15;
 
-$kmeans = new KMEANS($K,$alternative);
+$kmeans = new KMEANS($K);
+$kmeans->SetAlternative($alternative);
 $centroids1 = $kmeans->InitializeCentroids();
 for ($i=0;$i<$ITERATION_LIMIT;$i++){
 	$cluster =$kmeans->AssignCluster();	
@@ -55,7 +55,7 @@ for ($k=0;$k<$K;$k++){
 </td><td>
 <?php
 
-echo "<p style='text-align:left'>Centroids (".$gkmeans->iteration." iterations)<p>";
+echo "<p style='text-align:left'>Centroids (".$kmeans->iteration." iterations)<p>";
 $N = count($centroids);
 for ($k=0;$k<$K;$k++){
 	$graph->color[$k];
@@ -74,23 +74,19 @@ $C = count($alternative);
 for ($j=0;$j<$C;$j++){
 	echo "<th>".$criteria[$j]."</th>";
 }
-echo "<th>Sum</th><th>RANK</th><th>CLUSTER</th></tr>";	
-$N = count($rank);				
-for ($i=0;$i<$N;$i++){
+echo "<th>CLUSTER</th></tr>";
+$totalObject = count($alternativeid);
+for ($i=0;$i<$totalObject;$i++){
 	echo "<tr><td>".$alternativeid[$i]."</td>";
 	$sum = 0;
 	for ($j=0;$j<$C;$j++){
 			echo "<td>".$alternative[$j][$i]."</td>";
-			$sum += $alternative[$j][$i];
 	}
-	echo "<td>".$sum."</td>";
-	echo "<td>".$rank[$i]."</td>";
 	echo "<td>".$cluster[$i]."</td>";
 	echo "</tr>";	
 }
 echo "</table>";
 echo "</div>";
-//$data = array_map(null, $alternativeid,$alternative,$cluster);
 ?>
 </td>
 <td  valign="top" align="center" >
