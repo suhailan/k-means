@@ -4,8 +4,8 @@ class GRAPH
 	public $color = array("green","blue","red","aqua","brown","fuchsia","indigo","greenyellow");	
 	public $xstep = 5;
 	public $ystep = 5;
-    public function __construct()
-    {		
+   	public function __construct()
+    	{		
 	}
 	
 	public function SCATTER(array $id,array $features,array $cluster,array $centroids, $K){
