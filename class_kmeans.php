@@ -26,12 +26,14 @@ class KMEANS
 	
 	public function InitializeCentroids()
 	{		
-    $interval  =($this->totalObjects / $this->K);
+    	$interval  =($this->totalObjects / $this->K);
 		for ($k=0; $k < $this->K; $k++){			
 			for ($d=0; $d < $this->totalFeatures; $d++){
-        $i = ($k/$this->K)*$this->totalObjects + $interval;
+        		$i = ($k/$this->K)*$this->totalObjects + $interval-1;
 				$this->centroids[$k][$d] = $this->objects[$d][$i];
+				//echo "$k-$i:".$this->objects[$d][$i];
 			}						
+			//echo "<br>";
 		}
 		$this->centroidsCurr = $this->centroids;
 		return $this->centroids;
@@ -39,6 +41,7 @@ class KMEANS
 	
 	public function AssignCluster(){	
 		//Calculate nearest distance among centroids
+		//Euclidean Distance
 		$nearestdistance = array();
 		for ($i=0; $i < $this->totalObjects; $i++)
 		{
@@ -108,3 +111,4 @@ class KMEANS
 		return $this->centroids;
 	}		
 }
+?>
